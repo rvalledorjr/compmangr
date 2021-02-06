@@ -7,6 +7,7 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: "/",
+    redirect: "/home/companies",
   },
   {
     path: "/login",
@@ -15,6 +16,16 @@ const routes: Array<RouteConfig> = [
   {
     path: "/home",
     component: () => import("@/views/HomePage.vue"),
+    children: [
+      {
+        path: "companies",
+        components: {
+          default: () => import("@/views/CompanyPage.vue"),
+          companyBtnAdd: () => import("@/components/CompanyBtnAdd.vue"),
+          companyDialogAdd: () => import("@/components/CompanyDialogAdd.vue"),
+        },
+      },
+    ],
   },
 ];
 
@@ -26,12 +37,15 @@ router.beforeEach((to, from, next) => {
   const toLogin = to.path === "/login";
   const toRoot = to.path == "/";
   const user = store.state.user;
-  if (user.isAuthenticated && (toLogin || toRoot)) {
-    next("/home");
-  } else if (!user.isAuthenticated && !toLogin) {
-    next("/login");
-  } else {
-    next();
+  if (!user.isAuthenticated) {
+    if (toLogin) next();
+    else next("/login");
+    return;
+  }
+
+  if (user.isAuthenticated) {
+    if (toLogin) next("/home/companies");
+    else next();
   }
 });
 

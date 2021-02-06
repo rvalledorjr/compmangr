@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import User from "@/model/User";
+import Company from "@/model/Company";
 
 Vue.use(Vuex);
 
@@ -10,6 +11,7 @@ const store = new Vuex.Store({
       userName: "admin",
       password: "admin",
     }),
+    companies: [] as Company[],
   },
   mutations: {
     AUTHENTICATE(state, auth: { userName: string; password: string }) {
@@ -17,6 +19,13 @@ const store = new Vuex.Store({
     },
     LOGOUT(state) {
       state.user.logout();
+    },
+    ADD_COMPANY(state, company: Company) {
+      state.companies.push(company);
+    },
+    DELETE_COMPANY(state, company: Company) {
+      const i = state.companies.indexOf(company);
+      state.companies.splice(i, 1);
     },
   },
   actions: {},

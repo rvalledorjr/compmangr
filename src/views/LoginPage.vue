@@ -11,30 +11,27 @@
                 </v-avatar>
               </v-card-title>
               <v-card-text>
-                <v-form ref="loginForm" @keyup.prevent.submit="login">
+                <v-form ref="loginForm">
                   <v-text-field
                     v-model="userName"
                     required
                     placeholder="User Name"
                     :rules="rule.userName"
+                    @keyup.enter="login"
                   ></v-text-field>
                   <v-text-field
                     v-model="password"
                     required
                     placeholder="Password"
-                    :rules="rule.password"
                     type="password"
+                    :rules="rule.password"
+                    @keyup.enter="login"
                   ></v-text-field>
                   <p v-if="invalidCredentials" class="red--text mt-3 accent-1">
                     Invalid user name and password.
                   </p>
                   <div class="d-flex">
-                    <v-btn
-                      color="primary"
-                      class="ml-auto"
-                      type="submit"
-                      @click="login"
-                    >
+                    <v-btn color="primary" class="ml-auto" @click="login">
                       Login
                     </v-btn>
                   </div>
@@ -80,7 +77,7 @@ export default Vue.extend({
       this.invalidCredentials = !(valid && user.isAuthenticated);
 
       if (!this.invalidCredentials) {
-        this.$router.push("/home");
+        this.$router.push("/home/companies");
       }
     },
   },
