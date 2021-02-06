@@ -20,7 +20,7 @@ const routes: Array<RouteConfig> = [
       {
         path: "companies",
         components: {
-          default: () => import("@/views/CompanyPage.vue"),
+          default: () => import("@/views/CompaniesPage.vue"),
           companyBtnAdd: () => import("@/components/CompanyBtnAdd.vue"),
           companyDialogAdd: () => import("@/components/CompanyDialogAdd.vue"),
         },
