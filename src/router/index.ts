@@ -25,6 +25,12 @@ const routes: Array<RouteConfig> = [
           companyDialogAdd: () => import("@/components/CompanyDialogAdd.vue"),
         },
       },
+      {
+        path: "companies/:id",
+        components: {
+          default: () => import("@/views/CompanyPage.vue"),
+        },
+      },
     ],
   },
 ];

@@ -30,7 +30,9 @@
     <v-main>
       <v-container>
         <v-row>
-          <router-view></router-view>
+          <v-col cols="12">
+            <router-view></router-view>
+          </v-col>
         </v-row>
       </v-container>
     </v-main>

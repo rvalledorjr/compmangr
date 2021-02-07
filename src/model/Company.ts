@@ -1,29 +1,43 @@
-import Department from "./Department";
 import Employee from "./Employee";
 
 export default class Company {
+  id = Company.generateId();
   name = "";
   address = "";
   bannerImage = "";
 
-  departments: Department[] = [];
   employees: Employee[] = [];
 
-  addEmployee(employee: Employee, department: Department) {
-    this.addDepartment(department);
-
-    const similarEmployeeExists = this.employees.find((e) =>
-      e.isSimilarWith(e)
-    );
-    if (similarEmployeeExists) throw "Similar employee exists";
-
-    this.employees.push(employee);
+  get departments(): string[] {
+    const deptSet = new Set(this.employees.map((e) => e.department));
+    return [...deptSet];
   }
 
-  addDepartment(department: Department) {
-    const deptExists = this.departments.find((d) => d.isEqualTo(department));
-    if (deptExists) return;
+  employeeWithId(id: number): Employee | undefined {
+    return this.employees.find((e) => e.id === id);
+  }
 
-    this.departments.push(department);
+  similarEmployeeExists(employee: Employee): boolean {
+    return !!this.employees.find((e) => e.isSimilarWith(employee));
+  }
+
+  addEmployee(employee: Employee) {
+    this.employees.push(employee);
+  }
+  deleteEmployee(employee: Employee) {
+    const i = this.employees.indexOf(employee);
+    this.employees.splice(i, 1);
+  }
+
+  deleteDepartment(department: string) {
+    const remainingEmployees = this.employees.filter(
+      (e) => e.department !== department
+    );
+    this.employees = remainingEmployees;
+  }
+
+  static counter = 0;
+  private static generateId() {
+    return Company.counter++;
   }
 }

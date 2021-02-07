@@ -15,6 +15,7 @@
             :outlined="!hover"
             @delete="confirmCompanyDeletion"
             @update="setToBeUpdated"
+            @selected="selectCompany"
           />
         </v-hover>
       </v-row>
@@ -54,7 +55,7 @@ export default Vue.extend({
 
   data() {
     return {
-      toBeDeleted: {},
+      toBeDeleted: {} as any,
       toBeUpdated: {},
     };
   },
@@ -68,7 +69,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    ...mapMutations(["DELETE_COMPANY"]),
+    ...mapMutations(["DELETE_COMPANY", "SELECT_COMPANY"]),
     confirmCompanyDeletion(company: Company) {
       this.toBeDeleted = company;
     },
@@ -87,6 +88,10 @@ export default Vue.extend({
     },
     cancelDeletion() {
       this.toBeDeleted = {};
+    },
+    selectCompany(company: Company) {
+      this.SELECT_COMPANY(company);
+      this.$router.push(`/home/companies/${company.id}`);
     },
   },
 });

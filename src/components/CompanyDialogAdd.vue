@@ -1,5 +1,10 @@
 <template>
-  <v-dialog v-bind="$attrs" max-width="430px" transition="dialog-transition">
+  <v-dialog
+    v-bind="$attrs"
+    max-width="430px"
+    transition="dialog-transition"
+    persistent
+  >
     <v-card>
       <v-card-title primary-title>Create a new company</v-card-title>
       <v-container>
