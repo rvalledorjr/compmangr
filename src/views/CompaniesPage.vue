@@ -1,7 +1,7 @@
 <template>
   <v-sheet>
     <v-container fluid>
-      <v-row>
+      <v-row v-if="companies.length > 0">
         <v-hover
           v-for="(c, i) in companies"
           :key="i"
@@ -18,6 +18,20 @@
             @selected="selectCompany"
           />
         </v-hover>
+      </v-row>
+      <v-row v-else justify="center">
+        <v-col cols="12">
+          <v-card class="mt-5" flat>
+            <v-card-text class="d-flex justify-center">
+              <v-icon size="100" color="grey">
+                mdi-package-variant
+              </v-icon>
+            </v-card-text>
+            <v-card-title class="d-flex justify-center text-h3 grey--text">
+              Start adding companies.
+            </v-card-title>
+          </v-card>
+        </v-col>
       </v-row>
     </v-container>
     <CompanyDialogUpdate

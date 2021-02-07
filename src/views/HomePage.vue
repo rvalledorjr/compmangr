@@ -34,7 +34,7 @@
       <v-list>
         <v-list-item @click="goToHome">
           <v-list-item-icon>
-            <v-icon>mdi-home</v-icon>
+            <v-icon large>mdi-home</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             Home
