@@ -10,6 +10,7 @@
                   <v-icon size="40" color="white">mdi-account</v-icon>
                 </v-avatar>
               </v-card-title>
+              <p class="d-flex justify-center text-h5">Login</p>
               <v-card-text>
                 <v-form ref="loginForm">
                   <v-text-field
