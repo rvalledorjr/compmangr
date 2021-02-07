@@ -8,6 +8,10 @@ export default class Company {
 
   employees: Employee[] = [];
 
+  get nameInitial(): string {
+    return this.name.charAt(0).toUpperCase();
+  }
+
   get departments(): string[] {
     const deptSet = new Set(this.employees.map((e) => e.department));
     return [...deptSet];

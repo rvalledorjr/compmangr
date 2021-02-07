@@ -1,6 +1,6 @@
 <template>
   <v-sheet>
-    <v-container fluid>
+    <v-container>
       <v-row justify="center">
         <v-col>
           <v-data-table

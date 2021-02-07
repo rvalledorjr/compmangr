@@ -24,6 +24,10 @@ const routes: Array<RouteConfig> = [
           companyBtnAdd: () => import("@/components/CompanyBtnAdd.vue"),
           companyDialogAdd: () => import("@/components/CompanyDialogAdd.vue"),
         },
+        beforeEnter(to, from, next) {
+          store.commit("SELECT_COMPANY", {});
+          next();
+        },
       },
       {
         path: "companies/:id",

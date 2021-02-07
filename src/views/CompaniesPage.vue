@@ -23,11 +23,13 @@
     <CompanyDialogUpdate
       :value="showUpdateDialog"
       :company="toBeUpdated"
+      persistent
       @update:company="updateCompany"
       @cancel="cancelUpdate"
     />
     <ConfirmationDialog
       :value="showConfirmDialog"
+      persistent
       @cancel="cancelDeletion"
       @confirm="deleteCompany"
     >
